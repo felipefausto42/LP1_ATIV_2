@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -129,6 +130,38 @@ class Funcionario{
     void setSalario(float salario){
         this -> salario = salario;
     }
+};
+
+class Escola{
+    string nomeEscola, cnpj;
+    Funcionario funcionarios[5];
+    Aluno alunos[10];
+
+    public:
+
+    string getNome(){
+        return this -> nomeEscola;
+    }
+
+    void setNome(string nomeEscola){
+        this -> nomeEscola = nomeEscola;
+    }
+
+    string getCNPJ(){
+        return this -> cnpj;
+    }
+
+    void setCNPJ(string cnpj){
+        this -> cnpj = cnpj;
+    }
+
+    // Métodos de manipulação gerais
+
+    void listarAlunos(){
+        
+    }
+
+
 };
 
 int main(){
