@@ -140,6 +140,11 @@ class Escola{
 
     public:
 
+    Escola(string nomeEscola, string cnpj){
+        this -> nomeEscola = nomeEscola;
+        this -> cnpj = cnpj;
+    }
+
     string getNome(){
         return this -> nomeEscola;
     }
@@ -217,7 +222,13 @@ class Escola{
 };
 
 int main(){
+    string nomeEmpresa, cnpj;
+    cout << "Digite o nome da sua nova escola: ";
+    cin >> nomeEmpresa;
+    cout << "Digite o CNPJ da sua escola: ";
+    cin >> cnpj;
 
+    Escola *school = new Escola(nomeEmpresa, cnpj);
 
     return 0;
 }
