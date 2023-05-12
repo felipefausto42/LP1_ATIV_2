@@ -95,7 +95,7 @@ class Funcionario{
         return this -> cpf;
     }
 
-    void setNCPF(string cpf){
+    void setCPF(string cpf){
         this -> cpf = cpf;
     }
 
@@ -136,6 +136,7 @@ class Escola{
     string nomeEscola, cnpj;
     Funcionario *funcionarios = new Funcionario[5];
     Aluno *alunos = new Aluno[10];
+    int cont = 0;
 
     public:
 
@@ -157,8 +158,31 @@ class Escola{
 
     // Métodos de manipulação gerais
 
-    void addAluno(){
-        
+    void addAluno(string nomeCompleto, string cpf, string idade, long int matricula, string serie){
+        if(cont < 10){
+            alunos[cont].setNome(nomeCompleto);
+            alunos[cont].setCPF(cpf);
+            alunos[cont].setIdade(idade);
+            alunos[cont].setMatricula(matricula);
+            alunos[cont].setSerie(serie);
+            cont++;
+        }else{
+            cout << "Não é possível adicionar mais alunos (MÁXIMO = 10)";
+        }
+    }
+
+    void inserirFuncionario(string nomeCompleto, string cpf, string idade, long int matricula, string cargo, float salario){
+        if(cont < 5){
+            funcionarios[cont].setNome(nomeCompleto);
+            funcionarios[cont].setCPF(cpf);
+            funcionarios[cont].setIdade(idade);
+            funcionarios[cont].setMatricula(matricula);
+            funcionarios[cont].setSalario(salario);
+            funcionarios[cont].setCargo(cargo);
+            cont++;
+        }else{
+            cout << "Não é possível adicionar mais funcionários (MÁXIMO = 5)";
+        }
     }
     
     void listarAlunos(){
