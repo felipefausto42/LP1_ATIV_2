@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
 
 using namespace std;
 
@@ -176,7 +177,7 @@ class Escola{
         }
     }
 
-    void inserirFuncionario(string nomeCompleto, string cpf, string idade, long int matricula, string cargo, float salario){
+    void addFuncionario(string nomeCompleto, string cpf, string idade, long int matricula, string cargo, float salario){
         if(cont < 5){
             funcionarios[cont].setNome(nomeCompleto);
             funcionarios[cont].setCPF(cpf);
@@ -223,12 +224,75 @@ class Escola{
 
 int main(){
     string nomeEmpresa, cnpj;
+    int choice;
+
     cout << "Digite o nome da sua nova escola: ";
     cin >> nomeEmpresa;
     cout << "Digite o CNPJ da sua escola: ";
     cin >> cnpj;
 
     Escola *school = new Escola(nomeEmpresa, cnpj);
+
+    while(true){
+        cout << "\n================================\n";
+        cout << "Escolha uma das opções abaixo:\n"  << endl;
+        cout << "1) Listar alunos" << endl;
+        cout << "2) Listar funcionários" << endl;
+        cout << "3) Adicionar aluno" << endl;
+        cout << "4) Adicionar funcionário" << endl;
+        cout << "0) Sair";
+        cout << "\n================================\n";
+        cin >> choice;
+
+        if(choice == 1){
+                school->listarAlunos();
+                break;
+        } else if(choice == 2){
+                school->listarFuncionarios();
+                break;
+        } else if (choice == 3){
+                string nomeCompleto, cpf, idade, serie;
+                long int matricula;
+                cout << "\nDigite o nome do aluno :";
+                cin >> nomeCompleto;
+                cout << "\nDigite o CPF do aluno: ";
+                cin >> cpf;
+                cout << "\nDigite a idade do aluno: ";
+                cin >> idade;
+                cout << "\nDigite a matrícula do aluno";
+                cin >> matricula;
+                cout << "\nDigite a série do aluno: ";
+                cin >> serie;
+                school->addAluno(nomeCompleto, cpf, idade, matricula, serie);
+        } else if (choice == 4){                
+                string nomeCompleto, cpf, idade, cargo;
+                long int matricula;
+                float salario;
+                
+                cout << "\nDigite o nome do funcionário:";
+                cin >> nomeCompleto;
+                cout << "\nDigite o CPF do funcionário: ";
+                cin >> cpf;
+                cout << "\nDigite a idade do funcionário: ";
+                cin >> idade;
+                cout << "\nDigite a matrícula do funcionário";
+                cin >> matricula;
+                cout << "\nDigite o cargo: ";
+                cin >> cargo;
+                cout << "Digite o salário do funcionário: ";
+                cin >> salario;
+
+                school->addFuncionario(nomeCompleto, cpf, idade, matricula, cargo, salario);
+        } else if (choice == 5){
+                float salarios;
+                salarios = floorf(school->calcularSalarios() * 100)/100;
+        } else if (choice == 0){
+                cout << "Deixando o programa...\n";
+                return 0;
+        } else{
+                cout << "Opção inválida. Tente novamente.\n";
+        }
+    }
 
     return 0;
 }
