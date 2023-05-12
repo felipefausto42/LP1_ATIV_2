@@ -4,7 +4,7 @@
 using namespace std;
 
 class Aluno{
-    string nomeCompleto, cfp, idade, serie;
+    string nomeCompleto, cpf, idade, serie;
     long int matricula;
 
     public:
@@ -13,9 +13,9 @@ class Aluno{
 
     }
 
-    Aluno(string nomeCompleto, string cfp, string idade, string serie, long int matricula){
+    Aluno(string nomeCompleto, string cpf, string idade, string serie, long int matricula){
         this -> nomeCompleto = nomeCompleto;
-        this -> cfp = cfp;
+        this -> cpf = cpf;
         this -> idade = idade;
         this -> serie = serie;
         this -> matricula = matricula;
@@ -29,12 +29,12 @@ class Aluno{
         this -> nomeCompleto = nomeCompleto;
     }
 
-    string getCFP(){
-        return this -> cfp;
+    string getCPF(){
+        return this -> cpf;
     }
 
-    void setNome(string cfp){
-        this -> cfp = cfp;
+    void setCPF(string cpf){
+        this -> cpf = cpf;
     }
 
     string getIdade(){
@@ -64,7 +64,7 @@ class Aluno{
 };
 
 class Funcionario{
-    string nomeCompleto, cfp, idade, cargo;
+    string nomeCompleto, cpf, idade, cargo;
     long int matricula;
     float salario; 
     
@@ -74,9 +74,9 @@ class Funcionario{
 
     }
 
-    Funcionario(string nomeCompleto, string cfp, string idade, string cargo, long int matricula, float salario){
+    Funcionario(string nomeCompleto, string cpf, string idade, string cargo, long int matricula, float salario){
         this -> nomeCompleto = nomeCompleto;
-        this -> cfp = cfp;
+        this -> cpf = cpf;
         this -> idade = idade;
         this -> cargo = cargo;
         this -> matricula = matricula;
@@ -91,12 +91,12 @@ class Funcionario{
         this -> nomeCompleto = nomeCompleto;
     }
 
-    string getCFP(){
-        return this -> cfp;
+    string getCPF(){
+        return this -> cpf;
     }
 
-    void setNome(string cfp){
-        this -> cfp = cfp;
+    void setNCPF(string cpf){
+        this -> cpf = cpf;
     }
 
     string getIdade(){
@@ -134,8 +134,8 @@ class Funcionario{
 
 class Escola{
     string nomeEscola, cnpj;
-    Funcionario funcionarios[5];
-    Aluno alunos[10];
+    Funcionario *funcionarios = new Funcionario[5];
+    Aluno *alunos = new Aluno[10];
 
     public:
 
@@ -157,10 +157,38 @@ class Escola{
 
     // Métodos de manipulação gerais
 
-    void listarAlunos(){
+    void addAluno(){
         
     }
+    
+    void listarAlunos(){
+        for(int i = 0; i < 10; i++){
+            cout << "Nome completo: " << alunos[i].getNome() << endl;
+            cout << "CPF: " << alunos[i].getCPF() << endl;
+            cout << "Idade: " << alunos[i].getIdade() << endl;
+            cout << "Matrícula: " << alunos[i].getMatricula() << endl;
+            cout << "Série: " << alunos[i].getSerie() << endl;
+        }
+    }
 
+    void listarFuncionarios(){
+        for(int i = 0; i < 5; i++){
+            cout << "Nome completo: " << funcionarios[i].getNome() << endl;
+            cout << "CPF: " << funcionarios[i].getCPF() << endl;
+            cout << "Idade: " << funcionarios[i].getIdade() << endl;
+            cout << "Matrícula: " << funcionarios[i].getMatricula() << endl;
+            cout << "Cargo: " << funcionarios[i].getCargo() << endl;
+            cout << "Salário: $" << funcionarios[i].getSalario() << endl;
+        }
+    }
+
+    float calcularSalarios(){
+        float soma = 0;
+        for(int i = 0; i < 5; i++){
+            soma += funcionarios[i].getSalario();
+        }
+        return soma;
+    }
 
 };
 
